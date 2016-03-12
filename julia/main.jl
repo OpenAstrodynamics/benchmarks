@@ -1,6 +1,6 @@
 # Account for non-standard library and code locations
 push!(LOAD_PATH, abspath(splitdir(@__FILE__)[1]))
-push!(Libdl.DL_LOAD_PATH, abspath(joinpath(splitdir(@__FILE__)[1], "..", "..", "deps", "dopri", "build")))
+push!(Libdl.DL_LOAD_PATH, abspath(joinpath(splitdir(@__FILE__)[1], "..", "lib", "dopri", "build")))
 
 using ICATT
 

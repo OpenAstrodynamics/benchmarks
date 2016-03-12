@@ -5,8 +5,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -O3")
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 find_package(Eigen3 REQUIRED)
 
-add_subdirectory(../../deps/dopri ${CMAKE_BINARY_DIR}/dopri)
-add_subdirectory(../../deps/spice ${CMAKE_BINARY_DIR}/spice)
+add_subdirectory(../lib/dopri ${CMAKE_BINARY_DIR}/dopri)
 
 include_directories(
         ${EIGEN3_INCLUDE_DIR}
