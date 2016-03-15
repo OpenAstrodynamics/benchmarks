@@ -1,3 +1,3 @@
 # ICATT 2016 Benchmarks
 
-![Time vs. SLOC](https://www.dropbox.com/s/pikomryglqn66z7/avg_vs_sloc.svg?dl=0)
+![Time vs. SLOC](https://rawgit.com/helgee/icatt-2016/master/avg_vs_sloc.svg)
