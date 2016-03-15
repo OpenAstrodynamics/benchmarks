@@ -11,4 +11,4 @@
 | Python       | 251.41   | 25.85  | 133.23  | N/A   |
 | Matlab       | 186.41   | 282.96 | 196.89  | N/A   |
 
-![Time vs. SLOC](https://raw.githubusercontent.com/helgee/icatt-2016/master/avg_vs_sloc.svg)
+![Time vs. SLOC](https://raw.githubusercontent.com/helgee/icatt-2016/master/avg_vs_sloc.png)
