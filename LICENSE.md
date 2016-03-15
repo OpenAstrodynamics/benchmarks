@@ -26,7 +26,7 @@ following license:
 > NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS 
 > SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-All other files all distributed under following license.
+All other files are distributed under the following license.
 
 > Copyright (c) 2016, Helge Eichhorn, Juan Luis Cano, Frazer McLean
 >
