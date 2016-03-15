@@ -3,7 +3,7 @@
 ## Average Performance Relative to Fortran (N=100000)
 
 | Problem      | Elements | Kepler | Lambert | Dopri |
-| --           | --       | --     | --      | --    |
+| ---          | ---      | ---    | ---     | ---   |
 | C++          | 0.42     | 0.2    | 1.46    | 1.28  |
 | Julia        | 2.29     | 0.71   | 1.1     | 2.97  |
 | Java         | 7.54     | 0.7    | 3.2     | 19.22 |
