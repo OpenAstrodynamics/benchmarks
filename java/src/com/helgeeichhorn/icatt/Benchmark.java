@@ -19,10 +19,10 @@ public class Benchmark {
         double seconds;
         long start;
         long end;
-        Elements.fromRv(r, v, mu);
+        ElementsFast.fromRv(r, v, mu);
         for (int i = 0; i < times; i++) {
             start = System.nanoTime();
-            Elements.fromRv(r, v, mu);
+            ElementsFast.fromRv(r, v, mu);
             end = System.nanoTime();
             current = end - start;
             seconds = current.doubleValue()/1e9;
@@ -137,10 +137,10 @@ public class Benchmark {
         double seconds;
         long start;
         long end ;
-        Lambert.solve(mu, rlam0, rlam, tof);
+        LambertFast.solve(mu, rlam0, rlam, tof);
         for (int i = 0; i < times; i++) {
             start = System.nanoTime();
-            Lambert.solve(mu, rlam0, rlam, tof);
+            LambertFast.solve(mu, rlam0, rlam, tof);
             end = System.nanoTime();
             current = end - start;
             seconds = current.doubleValue()/1e9;

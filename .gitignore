@@ -1,2 +1,5 @@
 build/
 __pycache__/
+java/out/
+python/icatt/_*
+java/lib

@@ -23,7 +23,7 @@ namespace dopri {
     }
 
     void solout_dummy(int *nr, double *xold, double *x, double *y, int *n, double *con,
-                      int *icomp, int *nd, double *rpar, int *ipar, int *irtrn, double *xout) { };
+                      int *icomp, int *nd, double *rpar, int *ipar, int *irtrn, double *xout){};
 
     void integrate(void (*func)(int *, double *, double *, double *, double *, int *),
             double *x, VectorXd *rv, double xend, double rpar[], int ipar[],
