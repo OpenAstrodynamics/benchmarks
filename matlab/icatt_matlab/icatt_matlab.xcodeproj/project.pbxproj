@@ -1,0 +1,74 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXFileReference section */
+		E8B6F8071DC4DCB1008A6983 /* propagator_module.f90 */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.fortran.f90; name = propagator_module.f90; path = ../propagator_module.f90; sourceTree = "<group>"; };
+		E8B6F8081DC4DCB1008A6983 /* propagator.f90 */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.fortran.f90; name = propagator.f90; path = ../propagator.f90; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		E8B6F8001DC4DC95008A6983 = {
+			isa = PBXGroup;
+			children = (
+				E8B6F8071DC4DCB1008A6983 /* propagator_module.f90 */,
+				E8B6F8081DC4DCB1008A6983 /* propagator.f90 */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXProject section */
+		E8B6F8011DC4DC95008A6983 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0800;
+			};
+			buildConfigurationList = E8B6F8041DC4DC95008A6983 /* Build configuration list for PBXProject "icatt_matlab" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = E8B6F8001DC4DC95008A6983;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		E8B6F8051DC4DC95008A6983 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		E8B6F8061DC4DC95008A6983 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E8B6F8041DC4DC95008A6983 /* Build configuration list for PBXProject "icatt_matlab" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E8B6F8051DC4DC95008A6983 /* Debug */,
+				E8B6F8061DC4DC95008A6983 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E8B6F8011DC4DC95008A6983 /* Project object */;
+}

@@ -8,22 +8,23 @@ rlam = [-14600.0, 2500.0, 7000.0];
 tof = 3600.0;
 
 el = elements(r, v, mu);
+tend = period(el(1), mu)
 
 worst = -inf;
 best = inf;
 total = 0;
 for ii = 1:times
-tic;
-elements(r, v, mu);
-t = toc;
+    tic;
+    elements(r, v, mu);
+    t = toc;
 
-total = total + t;
-if t > worst
-    worst = t;
-end
-if t < best
-    best = t;
-end
+    total = total + t;
+    if t > worst
+        worst = t;
+    end
+    if t < best
+        best = t;
+    end
 end
 
 disp(['[',num2str(total/times),',',num2str(best),',',num2str(worst),']'])
@@ -32,17 +33,17 @@ worst = -inf;
 best = inf;
 total = 0;
 for ii = 1:times
-tic;
-mean2ecc(pi/2, el(2));
-t = toc;
+    tic;
+    mean2ecc(pi/2, el(2));
+    t = toc;
 
-total = total + t;
-if t > worst
-    worst = t;
-end
-if t < best
-    best = t;
-end
+    total = total + t;
+    if t > worst
+        worst = t;
+    end
+    if t < best
+        best = t;
+    end
 end
 
 disp(['[',num2str(total/times),',',num2str(best),',',num2str(worst),']'])
@@ -51,17 +52,17 @@ worst = -inf;
 best = inf;
 total = 0;
 for ii = 1:times
-tic;
-lambert(mu, rlam0, rlam, tof, true, 35, 1e-8);
-t = toc;
+    tic;
+    propagator('gravity', [r,v], 0, tend, mu);
+    t = toc;
 
-total = total + t;
-if t > worst
-    worst = t;
-end
-if t < best
-    best = t;
-end
+    total = total + t;
+    if t > worst
+        worst = t;
+    end
+    if t < best
+        best = t;
+    end
 end
 
 disp(['[',num2str(total/times),',',num2str(best),',',num2str(worst),']'])
