@@ -122,7 +122,8 @@ subroutine benchmark_dopri(times)
     double precision :: tend
     double precision, parameter :: mu = 3.986004418d5
 
-    double precision :: start, finish, current
+    double precision :: current, rate
+    integer(kind=8) :: start, finish, irate
     double precision :: total, best, worst
     integer :: i
 
@@ -137,15 +138,17 @@ subroutine benchmark_dopri(times)
     worst = -1d20
     best = 1d20
     total = 0d0
+    call system_clock(count_rate=irate)
+    rate = dble(irate)
     do i=1, times
-        call cpu_time(start)
+        call system_clock(start)
 
         call integrate(gravity, rv, t, tend, rpar, ipar)
 
-        call cpu_time(finish)
+        call system_clock(finish)
+        current = (finish - start)/rate
         rv = rv0
         t = 0d0
-        current = finish - start
         if (current < best .and. current > 0) then
             best = current
         end if

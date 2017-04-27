@@ -4,7 +4,7 @@ project(icatt Fortran)
 enable_language(Fortran)
 
 set(CMAKE_Fortran_MODULE_DIRECTORY ${PROJECT_BINARY_DIR}/include)
-set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -O3")
+set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -O2")
 
 add_subdirectory(../lib/dopri ${PROJECT_BINARY_DIR}/dopri)
 

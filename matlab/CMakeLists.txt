@@ -4,10 +4,13 @@ project(ICATT Fortran)
 enable_language(CXX)
 enable_testing()
 
+set(MATLAB_ADDITIONAL_VERSIONS "R2016b=9.1")
+
+set(Matlab_ROOT_DIR /home/helge/MATLAB/R2016b)
 find_package(Matlab REQUIRED COMPONENTS MX_LIBRARY MAIN_PROGRAM)
 
 set(CMAKE_Fortran_MODULE_DIRECTORY ${CMAKE_BINARY_DIR}/include)
-set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -cpp -g")
+set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -cpp -fPIC -g")
 
 add_subdirectory(../lib/dopri ${CMAKE_BINARY_DIR}/dopri)
 

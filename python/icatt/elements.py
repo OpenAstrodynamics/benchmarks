@@ -2,7 +2,7 @@ import numpy as np
 from numba import njit, jit
 import time
 
-def kepler_elements(times):
+def benchmark(times):
     r = np.array([8.59072560e+02, -4.13720368e+03, 5.29556871e+03])
     v = np.array([7.37289205e+00, 2.08223573e+00, 4.39999794e-01])
     mu = 3.986004418e5

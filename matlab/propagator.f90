@@ -28,6 +28,10 @@ subroutine mexFunction(nlhs, plhs, nrhs, prhs)
     mwpointer :: t_pr
     mwpointer :: tend_pr
     mwpointer :: rpar_pr
+    mwpointer :: locked_pr
+    integer :: mexislocked
+
+    mwsize, parameter :: one = 1
 
     integer :: n_
     integer :: lwork
@@ -45,6 +49,18 @@ subroutine mexFunction(nlhs, plhs, nrhs, prhs)
     double precision, dimension(:), allocatable :: y0
     double precision :: tend
     double precision :: t
+    integer :: locked
+
+    if (nrhs == 1) then
+        locked_pr = mxgetpr(prhs(1))
+        call mxcopyptrtointeger4(locked_pr, locked, one)
+        if (locked == 1 .and. mexislocked() == 0) then
+            call mexlock()
+        elseif (locked == 0 .and. mexislocked() == 1) then
+            call mexunlock()
+        end if
+        return
+    end if
 
     if (nrhs /= 5) then
          call mexErrMsgIdAndTxt ('ICATT:propagator:WrongInput', 'Five inputs required.')
@@ -72,13 +88,13 @@ subroutine mexFunction(nlhs, plhs, nrhs, prhs)
          call mexErrMsgIdAndTxt ('ICATT:propagator:WrongInput', 'Third argument must be a scalar.')
     end if
     t_pr = mxgetpr(prhs(3))
-    call mxcopyptrtoreal8(t_pr, t, 1)
+    call mxcopyptrtoreal8(t_pr, t, one)
 
     if (mxisnumeric(prhs(4)) /= 1 .and. (mxgetm(prhs(1)) /= 1 .and. mxgetn(prhs(1)) /= 1)) then
          call mexErrMsgIdAndTxt ('ICATT:propagator:WrongInput', 'Fourth argument must be a scalar.')
     end if
     tend_pr = mxgetpr(prhs(4))
-    call mxcopyptrtoreal8(tend_pr, t, 1)
+    call mxcopyptrtoreal8(tend_pr, t, one)
 
     if (mxisnumeric(prhs(5)) /= 1 .and. (mxgetm(prhs(1)) == 1 .and. mxgetn(prhs(1)) == 1)) then
          call mexErrMsgIdAndTxt ('ICATT:propagator:WrongInput', 'Fifth argument must be an array.')

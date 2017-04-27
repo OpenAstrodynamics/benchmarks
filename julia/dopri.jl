@@ -1,20 +1,20 @@
-export dopri, benchmark_dopri
+export benchmark_dopri
 
 function benchmark_dopri(times::Int)
     y = [8.59072560e+02, -4.13720368e+03, 5.29556871e+03, 7.37289205e+00, 2.08223573e+00, 4.39999794e-01]
     y0 = copy(y)
     mu = 3.986004418e5
     el = elements(y[1:3], y[4:6], mu)
-    rpar = collect(mu)
+    rpar = [mu]
     x = 0.0
     xend = period(el[1], mu)
     worst = -Inf
     best = Inf
     total = 0.0
-    dopri!(gravity!, x, y, xend, rpar)
+    dopri!(x, y, xend, rpar)
     for i = 1:times
         gc_enable(false)
-        t = @elapsed dopri!(gravity!, x, y, xend, rpar)
+        t = @elapsed dopri!(x, y, xend, rpar)
         gc_enable(true)
         y = copy(y0)
         x = 0.0
@@ -34,8 +34,8 @@ function gravity!(_n::Ptr{Cint}, _x::Ptr{Cdouble}, _y::Ptr{Cdouble}, _f::Ptr{Cdo
     n = unsafe_load(_n, 1)
     t = unsafe_load(_x, 1)
     rpar = unsafe_load(_rpar, 1)
-    y = pointer_to_array(_y, n)
-    f = pointer_to_array(_f, n)
+    y = unsafe_wrap(Array, _y, n, false)
+    f = unsafe_wrap(Array, _f, n, false)
 
     r = sqrt(y[1]*y[1]+y[2]*y[2]+y[3]*y[3])
     r3 = r*r*r
@@ -61,7 +61,7 @@ csolout = cfunction(_solout, Void, (Ptr{Cint}, Ptr{Cdouble}, Ptr{Cdouble},
     Ptr{Cint}, Ptr{Cdouble}, Ptr{Cint}, Ptr{Cint},
     Ptr{Cdouble}))
 
-function dopri!(func::Function, x::Float64, y::Vector{Float64}, xend::Float64,
+function dopri!(x::Float64, y::Vector{Float64}, xend::Float64,
     rpar::Vector{Float64}=Float64[], reltol::Float64=1e-6, abstol::Float64=1e-8)
     n = length(y)
     lwork = 11*n + 8*n + 21

@@ -11,7 +11,7 @@ integer, parameter :: times = 100000
 
 call benchmark_elements(times)
 call benchmark_kepler(times)
-call benchmark_dopri(times)
 call benchmark_lambert(times)
+call benchmark_dopri(times)
 
 end program main

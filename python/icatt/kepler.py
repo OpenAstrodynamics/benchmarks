@@ -3,7 +3,7 @@ from numba import jit, njit
 import time
 from icatt import elements
 
-def kepler_benchmark(times):
+def benchmark(times):
     r = np.array([8.59072560e+02, -4.13720368e+03, 5.29556871e+03])
     v = np.array([7.37289205e+00, 2.08223573e+00, 4.39999794e-01])
     tof = 3600.0
@@ -26,7 +26,7 @@ def kepler_benchmark(times):
         total += current
     print("[",total/times,",",best,",",worst,"]")
 
-@jit
+# @jit
 def newton(x0, func, derivative, maxiter=50, tol=1e-8):
     p0 = x0
     for _ in range(maxiter):
@@ -36,7 +36,7 @@ def newton(x0, func, derivative, maxiter=50, tol=1e-8):
         p0 = p
     raise RuntimeError("Not converged.")
 
-@jit
+# @jit
 def mean2ecc(M, ecc):
     def keplereq(E):
         return E - ecc*np.sin(E) - M

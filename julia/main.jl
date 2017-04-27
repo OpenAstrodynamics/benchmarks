@@ -7,5 +7,5 @@ using ICATT
 n = 100000
 benchmark_elements(n)
 benchmark_kepler(n)
-benchmark_dopri(n)
 benchmark_lambert(n)
+benchmark_dopri(n)

@@ -4,8 +4,9 @@ from icatt._dopri import ffi, lib
 import icatt.kepler as kepler
 import icatt.elements as elements
 import time
+from numba import cfunc, types, carray
 
-def dopri_benchmark(times):
+def benchmark(times):
     y = np.array([8.59072560e+02, -4.13720368e+03, 5.29556871e+03, 7.37289205e+00, 2.08223573e+00, 4.39999794e-01])
     y0 = y.copy()
     x = 0.0

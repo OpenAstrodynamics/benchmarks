@@ -8,6 +8,6 @@ int main()
     int n = 100000;
     elements::benchmark(n);
     kepler::benchmark(n);
-    dopri::benchmark(n);
     lambert::benchmark(n);
+    dopri::benchmark(n);
 }

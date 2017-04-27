@@ -1,16 +1,16 @@
 cmake_minimum_required(VERSION 3.3)
 
-add_subdirectory(../../../deps/dopri ${CMAKE_BINARY_DIR}/dopri)
+add_subdirectory(../../lib/dopri ${CMAKE_BINARY_DIR}/dopri)
 
-if(DEFINED ENV{JAVA_HOME})
-    set(JAVA_HOME ENV{JAVA_HOME})
-else()
-    set(JAVA_HOME /Library/Java/JavaVirtualMachines/jdk1.8.0_74.jdk/Contents/Home/)
-endif()
+#if(DEFINED ENV{JAVA_HOME})
+    set(JAVA_HOME $ENV{JAVA_HOME})
+#else()
+#    set(JAVA_HOME /Library/Java/JavaVirtualMachines/jdk1.8.0_74.jdk/Contents/Home/)
+#endif()
 
 include_directories(${CMAKE_SOURCE_DIR}
     ${JAVA_HOME}/include
-    ${JAVA_HOME}/include/darwin
+    ${JAVA_HOME}/include/linux
     ${CMAKE_SOURCE_DIR}/../../lib/dopri)
 
 set(SRCS jdopri.c)

@@ -4,7 +4,7 @@ from math import gamma
 
 from numba import jit, njit
 
-def lambert_benchmark(times):
+def benchmark(times):
     r0 = np.array([5000.0, 10000.0, 2100.0])
     r = np.array([-14600.0, 2500.0, 7000.0])
     tof = 3600.0

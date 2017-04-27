@@ -7,7 +7,7 @@ public class Main {
         b.benchmarkElements(n);
         b.benchmarkKepler(n);
         b.benchmarkKeplerFunctional(n);
-        b.benchmarkDopri(n);
         b.benchmarkLambert(n);
+        b.benchmarkDopri(n);
     }
 }

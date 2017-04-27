@@ -156,7 +156,8 @@ subroutine benchmark_lambert(times)
     double precision, parameter :: mu = 3.986004418d5
     type(lambertresult) :: res
 
-    double precision :: start, finish, current
+    double precision :: current, rate
+    integer(kind=8) :: start, finish, irate
     double precision :: total, best, worst
     integer :: i
 
@@ -167,13 +168,15 @@ subroutine benchmark_lambert(times)
     worst = -1d20
     best = 1d20
     total = 0d0
+    call system_clock(count_rate=irate)
+    rate = dble(irate)
     do i=1, times
-        call cpu_time(start)
+        call system_clock(start)
 
         res = lambertsolver(mu, r0, r, tof)
 
-        call cpu_time(finish)
-        current = finish - start
+        call system_clock(finish)
+        current = (finish - start)/rate
         if (current < best .and. current > 0) then
             best = current
         end if

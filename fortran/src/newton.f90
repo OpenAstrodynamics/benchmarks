@@ -39,7 +39,7 @@ double precision function newtonsolver(cb, x0, maxiter, tol)
     if (present(tol)) tol_ = tol
 
     do i = 1, maxiter_
-        p = p0 - cb.func(p0) / cb.deriv(p0)
+        p = p0 - cb%func(p0) / cb%deriv(p0)
         if (abs(p - p0) < tol_) then
             newtonsolver = p
             return
