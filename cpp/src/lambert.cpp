@@ -3,6 +3,7 @@
 #include <stdexcept>
 #include <Eigen/Dense>
 #include <cmath>
+#include <boost/math/special_functions/factorials.hpp>
 
 using Eigen::Vector3d;
 using std::runtime_error;
@@ -22,12 +23,12 @@ namespace lambert {
             res = (cosh(sqrt(-psi)) - 1) / (-psi);
         } else {
             res = 1.0 / 2.0;
-            auto delta = (-psi) / tgamma(2 + 2 + 1);
+            auto delta = (-psi) / boost::math::factorial<double>(2 + 2 + 1);
             auto k = 1;
             while (res + delta != res) {
                 res += delta;
                 k += 1;
-                delta = pow(-psi, k) / tgamma(2*k + 2 + 1);
+                delta = pow(-psi, k) / boost::math::factorial<double>(2*k + 2 + 1);
             }
         }
         return res;
@@ -42,12 +43,12 @@ namespace lambert {
             res = (sinh(sqrt(-psi)) - sqrt(-psi)) / (-psi * sqrt(-psi));
         } else {
             res = 1.0 / 6.0;
-            auto delta = (-psi) / tgamma(2 + 3 + 1);
+            auto delta = (-psi) / boost::math::factorial<double>(2 + 3 + 1);
             int k = 1;
             while (res + delta != res) {
                 res += delta;
                 k += 1;
-                delta = pow(-psi, k) / tgamma(2*k + 3 + 1);
+                delta = pow(-psi, k) / boost::math::factorial<double>(2*k + 3 + 1);
             }
         }
         return res;

@@ -4,6 +4,7 @@ project(ICATT)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -O2")
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 find_package(Eigen3 REQUIRED)
+find_package(Boost REQUIRED)
 
 add_subdirectory(../lib/dopri ${CMAKE_BINARY_DIR}/dopri)
 
