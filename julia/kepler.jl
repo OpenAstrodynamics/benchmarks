@@ -10,9 +10,9 @@ function benchmark_kepler(times::Int)
     total = 0.0
     meantoecc(pi/2, el[2])
     for i = 1:times
-        gc_enable(false)
+        GC.enable(false)
         t = @elapsed meantoecc(pi/2, el[2])
-        gc_enable(true)
+        GC.enable(true)
         if t > worst
             worst = t
         end

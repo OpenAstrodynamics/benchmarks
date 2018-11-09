@@ -13,9 +13,9 @@ function benchmark_dopri(times::Int)
     total = 0.0
     dopri!(x, y, xend, rpar)
     for i = 1:times
-        gc_enable(false)
+        GC.enable(false)
         t = @elapsed dopri!(x, y, xend, rpar)
-        gc_enable(true)
+        GC.enable(true)
         y = copy(y0)
         x = 0.0
         if t > worst
@@ -55,8 +55,8 @@ function _solout(_nr::Ptr{Cint}, _xold::Ptr{Cdouble}, _x::Ptr{Cdouble},
     return nothing
 end
 
-cfcn = cfunction(gravity!, Void, (Ptr{Cint}, Ptr{Cdouble}, Ptr{Cdouble}, Ptr{Cdouble}, Ptr{Cdouble}, Ptr{Cint}))
-csolout = cfunction(_solout, Void, (Ptr{Cint}, Ptr{Cdouble}, Ptr{Cdouble},
+cfcn = @cfunction(gravity!, Cvoid, (Ptr{Cint}, Ptr{Cdouble}, Ptr{Cdouble}, Ptr{Cdouble}, Ptr{Cdouble}, Ptr{Cint}))
+csolout = @cfunction(_solout, Cvoid, (Ptr{Cint}, Ptr{Cdouble}, Ptr{Cdouble},
     Ptr{Cdouble}, Ptr{Cint}, Ptr{Cdouble}, Ptr{Cint},
     Ptr{Cint}, Ptr{Cdouble}, Ptr{Cint}, Ptr{Cint},
     Ptr{Cdouble}))
@@ -74,11 +74,11 @@ function dopri!(x::Float64, y::Vector{Float64}, xend::Float64,
     itol = 0
     rtol = collect(reltol)
     atol = collect(abstol)
-    ccall((:c_dop853, :libdopri), Void, (Ptr{Cint}, Ptr{Void}, Ptr{Cdouble},
-    Ptr{Cdouble}, Ptr{Cdouble}, Ptr{Cdouble}, Ptr{Cdouble},
-    Ptr{Cint}, Ptr{Void}, Ptr{Cint}, Ptr{Cdouble},
-    Ptr{Cint}, Ptr{Cint}, Ptr{Cint}, Ptr{Cdouble},
-    Ptr{Cint}, Ptr{Cint}),
-    &n, cfcn, &x, y, &xend, rtol, atol, &itol, csolout, &iout,
-    work, &lwork, iwork, &liwork, rpar, ipar, &idid)
+    ccall((:c_dop853, :libdopri), Cvoid,
+          (Ref{Cint}, Ptr{Cvoid}, Ref{Cdouble}, Ptr{Cdouble}, Ref{Cdouble},
+           Ptr{Cdouble}, Ptr{Cdouble}, Ref{Cint}, Ptr{Cvoid}, Ref{Cint},
+           Ptr{Cdouble}, Ref{Cint}, Ptr{Cint}, Ref{Cint}, Ptr{Cdouble},
+           Ptr{Cint}, Ref{Cint}),
+          n, cfcn, x, y, xend, rtol, atol, itol, csolout, iout,
+          work, lwork, iwork, liwork, rpar, ipar, idid)
 end

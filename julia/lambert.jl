@@ -1,3 +1,6 @@
+using LinearAlgebra
+using SpecialFunctions: gamma
+
 export lambert, benchmark_lambert
 
 function benchmark_lambert(times::Int)
@@ -10,9 +13,9 @@ function benchmark_lambert(times::Int)
     total = 0.0
     lambert(mu, r0, r, tof)
     for i = 1:times
-        gc_enable(false)
+        GC.enable(false)
         t = @elapsed lambert(mu, r0, r, tof)
-        gc_enable(true)
+        GC.enable(true)
         if t > worst
             worst = t
         end

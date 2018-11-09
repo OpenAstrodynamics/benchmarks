@@ -9,9 +9,9 @@ function benchmark_elements(times::Int)
     total = 0.0
     elements(r, v, mu)
     for i = 1:times
-        gc_enable(false)
+        GC.enable(false)
         t = @elapsed elements(r, v, mu)
-        gc_enable(true)
+        GC.enable(true)
         if t > worst
             worst = t
         end
