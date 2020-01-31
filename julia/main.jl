@@ -7,7 +7,7 @@ push!(Libdl.DL_LOAD_PATH, abspath(joinpath(splitdir(@__FILE__)[1], "..", "lib", 
 using ICATT
 
 n = 100000
-benchmark_elements(n)
-benchmark_kepler(n)
-benchmark_lambert(n)
+#= benchmark_elements(n) =#
+#= benchmark_kepler(n) =#
+#= benchmark_lambert(n) =#
 benchmark_dopri(n)

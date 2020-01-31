@@ -1,3 +1,5 @@
+using LinearAlgebra
+
 export elements, benchmark_elements
 
 function benchmark_elements(times::Int)
